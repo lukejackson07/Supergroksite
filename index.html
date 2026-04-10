@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supergrok | $SUPERGROK</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            padding: 40px 20px;
+        }
+        .logo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 8px solid #ff00ff;
+            box-shadow: 0 0 30px #00ffff;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 3.5rem;
+            margin: 10px 0;
+            text-shadow: 0 0 20px #ff00ff;
+            color: #00ffff;
+        }
+        .ticker {
+            font-size: 2rem;
+            color: #ffd700;
+        }
+        .hero {
+            padding: 40px 20px;
+            background: rgba(0,0,0,0.6);
+            margin: 20px auto;
+            border-radius: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 15px;
+            font-size: 1.2rem;
+            background: #ff00ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 0 20px #ff00ff;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px #00ffff;
+        }
+        section {
+            padding: 40px 20px;
+            margin: 20px auto;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+        }
+        .contract {
+            word-break: break-all;
+            background: #000;
+            padding: 15px;
+            border: 2px dashed #00ffff;
+            font-family: monospace;
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        footer {
+            padding: 30px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="YOUR_LOGO_URL_HERE.png" alt="Supergrok Logo" class="logo">
+            <h1>SUPERGROK</h1>
+            <p class="ticker">$SUPERGROK on Ethereum</p>
+        </header>
+
+        <div class="hero">
+            <h2>The Ultimate AI-Powered Meme Coin</h2>
+            <p>Built for the Grok community. Inspired by xAI. Moon mission activated.</p>
+            
+            <a href="https://app.uniswap.org/explore/tokens/ethereum/0x00869e8e2e0343edd11314e6ccb0d78d51547ee5" target="_blank" class="btn">Buy on Uniswap</a>
+            <a href="YOUR_DEXSCREENER_OR_CHART_LINK" target="_blank" class="btn">Chart</a>
+            <a href="YOUR_TELEGRAM_LINK" target="_blank" class="btn">Telegram</a>
+            <a href="YOUR_X_LINK" target="_blank" class="btn">X / Twitter</a>
+        </div>
+
+        <section>
+            <h2>Token Info</h2>
+            <p><strong>Chain:</strong> Ethereum (ERC-20)</p>
+            <p><strong>Total Supply:</strong> 1,000,000,000</p>
+            <p><strong>Contract Address:</strong></p>
+            <div class="contract">
+                0x00869e8e2e0343edd11314e6ccb0d78d51547ee5
+            </div>
+            <button onclick="copyContract()" class="btn" style="padding:10px 20px; font-size:1rem;">Copy Address</button>
+        </section>
+
+        <section>
+            <h2>Why Supergrok?</h2>
+            <p>Fun • Community • AI Vibes • Potential for massive gains. No taxes, no BS.</p>
+            <!-- Add more sections later: Roadmap, Memes, Team (anon), etc. -->
+        </section>
+
+        <footer>
+            <p>© 2026 Supergrok. For entertainment purposes only. DYOR. Not financial advice.</p>
+        </footer>
+    </div>
+
+    <script>
+        function copyContract() {
+            navigator.clipboard.writeText("0x00869e8e2e0343edd11314e6ccb0d78d51547ee5");
+            alert("Contract address copied!");
+        }
+    </script>
+</body>
+</html>
