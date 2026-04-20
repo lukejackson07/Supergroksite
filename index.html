@@ -3,151 +3,219 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Official $SUPERGROK - Powered by Supergrok. The ultimate AI superhero memecoin on Ethereum.">
-  <title>$SUPERGROK | Official</title>
+  <meta name="description" content="Official $SUPERGROK - Powered by SuperGrok. Community-driven AI memecoin on Ethereum.">
+  <title>$SUPERGROK | Powered by SuperGrok</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
     body { font-family: 'Inter', system-ui, sans-serif; }
-    .neon-cyan { text-shadow: 0 0 20px #00f0ff, 0 0 40px #00f0ff; }
-    .hero-bg { background: linear-gradient(rgba(10,10,10,0.9), rgba(10,10,10,0.95)), url('assets/supergrok-cyber.jpg'); background-size: cover; background-position: center; }
-    .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); }
-    .iframe-container { position: relative; padding-top: 110%; }
-    @media (max-width: 768px) { 
-      .iframe-container { padding-top: 160%; } 
-      .neon-cyan { text-shadow: 0 0 15px #00f0ff; }
+    .title-font { font-family: 'Space Grotesk', sans-serif; }
+    .neon-cyan { text-shadow: 0 0 15px #00f0ff, 0 0 30px #00f0ff; }
+    .hero-bg { 
+      background: linear-gradient(rgba(10,10,10,0.88), rgba(10,10,10,0.95)), url('assets/supergrok-cyber.jpg'); 
+      background-size: cover; 
+      background-position: center; 
     }
+    .ticker { background: rgba(0, 240, 255, 0.08); border-bottom: 1px solid rgba(0, 240, 255, 0.3); }
+    .chart-container { position: relative; padding-top: 75%; } /* 4:3 aspect for chart */
+    .chart-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
   </style>
 </head>
 <body class="bg-[#0a0a0a] text-white overflow-x-hidden">
 
   <!-- LIVE PRICE TICKER -->
-  <div id="price-ticker" class="bg-black border-b border-[#00f0ff]/30 py-2 text-sm font-medium hidden md:block">
-    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between gap-8 overflow-hidden">
-      <div class="flex items-center gap-8 whitespace-nowrap">
-        <span class="flex items-center gap-2"><i class="fa-solid fa-chart-line text-[#00f0ff]"></i> <strong>$SUPERGROK</strong></span>
-        <span id="live-price" class="font-mono text-[#00f0ff]">—</span>
-        <span id="live-change" class="font-mono"></span>
-        <span id="live-volume" class="font-mono text-white/70"></span>
-        <span id="live-mcap" class="font-mono text-white/70"></span>
+  <div id="live-ticker" class="ticker py-2 text-sm font-medium fixed top-0 left-0 right-0 z-50 md:block hidden">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between flex-wrap gap-x-8 text-center md:text-left">
+      <div class="flex items-center gap-8 mx-auto md:mx-0 flex-wrap justify-center">
+        <div><span class="text-white/70">$SUPERGROK</span> <span id="live-price" class="neon-cyan font-mono font-bold">$0.000000</span></div>
+        <div><span id="live-change" class="font-mono font-bold">+0.00%</span></div>
+        <div><span class="text-white/70">MCAP</span> <span id="live-mcap" class="font-mono">$0</span></div>
+        <div><span class="text-white/70">LIQ</span> <span id="live-liq" class="font-mono">$0</span></div>
+        <div><span class="text-white/70">24h VOL</span> <span id="live-vol" class="font-mono">$0</span></div>
+      </div>
+      <div class="text-xs text-white/50 mx-auto md:mx-0 flex items-center gap-1">
+        <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+        LIVE • POWERED BY SUPERGROK • DexScreener
       </div>
     </div>
   </div>
 
-  <!-- NAVBAR (optimized mobile) -->
-  <nav class="fixed top-0 left-0 right-0 bg-black/95 backdrop-blur-md z-50 border-b border-white/10">
+  <!-- NAVBAR -->
+  <nav class="fixed top-[41px] md:top-0 left-0 right-0 bg-black/95 backdrop-blur-md z-50 border-b border-white/10">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <img src="assets/supergrok-logo.png" alt="SuperGrok" class="h-9 w-auto">
-        <span class="text-2xl font-bold tracking-tighter neon-cyan">$SUPERGROK</span>
+        <span class="text-3xl font-bold tracking-tighter title-font neon-cyan">$SUPERGROK</span>
       </div>
       
       <div class="hidden md:flex items-center gap-8 text-sm font-medium">
         <a href="#about" class="hover:text-[#00f0ff] transition">About</a>
+        <a href="#chart" class="hover:text-[#00f0ff] transition">Live Chart</a>
         <a href="#tokenomics" class="hover:text-[#00f0ff] transition">Tokenomics</a>
-        <a href="#buy" class="hover:text-[#00f0ff] transition">Buy Now</a>
-        <a href="#chart" class="hover:text-[#00f0ff] transition">Chart</a>
+        <a href="#howtobuy" class="hover:text-[#00f0ff] transition">How to Buy</a>
         <a href="#community" class="hover:text-[#00f0ff] transition">Community</a>
       </div>
 
-      <div class="flex items-center gap-3">
-        <button onclick="copyCA()" class="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/30 rounded-2xl text-xs font-medium flex items-center gap-2 transition">
-          <i class="fa-solid fa-copy"></i> <span class="hidden md:inline">Copy CA</span>
+      <div class="flex items-center gap-4">
+        <button onclick="copyCA()" 
+          class="px-5 py-2.5 bg-white/10 hover:bg-white/20 border border-white/30 rounded-2xl text-sm font-medium flex items-center gap-2 transition active:scale-95">
+          <i class="fa-solid fa-copy"></i>
+          <span id="ca-text">Copy CA</span>
         </button>
-        <button id="mobile-menu-btn" class="md:hidden text-3xl p-2">
+        <a href="https://app.uniswap.org/" target="_blank" 
+          class="px-7 py-2.5 bg-[#00f0ff] hover:bg-[#00d4e0] text-black font-semibold rounded-3xl transition active:scale-95 shadow-lg shadow-cyan-500/30">
+          BUY $SUPERGROK
+        </a>
+        
+        <!-- Mobile hamburger -->
+        <button id="mobile-menu-btn" class="md:hidden text-3xl">
           <i class="fa-solid fa-bars"></i>
         </button>
       </div>
     </div>
-
+    
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-white/10 px-6 py-8 text-center space-y-6 text-lg">
-      <a href="#about" class="block hover:text-[#00f0ff]">About</a>
-      <a href="#tokenomics" class="block hover:text-[#00f0ff]">Tokenomics</a>
-      <a href="#buy" class="block hover:text-[#00f0ff]">Buy Now</a>
-      <a href="#chart" class="block hover:text-[#00f0ff]">Live Chart</a>
-      <a href="#community" class="block hover:text-[#00f0ff]">Community</a>
-      <a href="https://x.com/ParodySupergrok" target="_blank" class="block text-[#00f0ff]">→ Follow @ParodySupergrok on X</a>
+    <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-white/10 px-6 py-6 text-center space-y-4">
+      <a href="#about" class="block py-3 hover:text-[#00f0ff]">About</a>
+      <a href="#chart" class="block py-3 hover:text-[#00f0ff]">Live Chart</a>
+      <a href="#tokenomics" class="block py-3 hover:text-[#00f0ff]">Tokenomics</a>
+      <a href="#howtobuy" class="block py-3 hover:text-[#00f0ff]">How to Buy</a>
+      <a href="#community" class="block py-3 hover:text-[#00f0ff]">Community</a>
     </div>
   </nav>
 
   <!-- HERO -->
-  <header class="hero-bg min-h-screen flex items-center pt-20 pb-12">
+  <header class="hero-bg min-h-screen flex items-center pt-20 md:pt-16">
     <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-      <div class="space-y-8 text-center md:text-left">
-        <h1 class="text-6xl md:text-7xl font-bold leading-none tracking-tighter neon-cyan">SUPER<br>GROK</h1>
-        <p class="text-xl md:text-2xl text-white/80">Powered by Supergrok — The ultimate AI superhero memecoin on Ethereum.<br>Community-driven. Zero taxes. Built to dominate.</p>
+      <div class="space-y-8">
+        <div class="inline-flex items-center gap-2 bg-white/10 px-5 py-2 rounded-3xl text-sm font-medium border border-white/20 backdrop-blur-md">
+          <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+          POWERED BY SUPERGROK
+        </div>
+        <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold leading-none tracking-tighter title-font neon-cyan">
+          SUPER<br>GROK
+        </h1>
+        <p class="text-2xl text-white/80">The ultimate AI superhero memecoin on Ethereum.<br>Community-driven. Zero taxes. Pure momentum.</p>
         
-        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-          <button onclick="document.getElementById('buy').scrollIntoView({behavior:'smooth'})" class="px-10 py-4 bg-[#00f0ff] hover:bg-[#00d4e0] text-black text-xl font-bold rounded-3xl transition flex items-center justify-center gap-3">
+        <div class="flex flex-wrap gap-4">
+          <a href="https://app.uniswap.org/" target="_blank" 
+            class="px-8 py-5 bg-[#00f0ff] hover:bg-[#00d4e0] text-black text-xl font-bold rounded-3xl transition flex items-center gap-3 shadow-xl shadow-cyan-500/40">
             <i class="fa-solid fa-rocket"></i> BUY NOW
-          </button>
-          <a href="https://x.com/ParodySupergrok" target="_blank" class="px-10 py-4 border border-white/40 hover:border-white/70 rounded-3xl text-xl font-medium flex items-center justify-center gap-3 transition">
+          </a>
+          <a href="https://x.com/ParodySupergrok" target="_blank" 
+            class="px-8 py-5 border border-white/30 hover:border-white/60 rounded-3xl text-xl font-medium flex items-center gap-3 transition">
             <i class="fa-brands fa-x-twitter"></i> @ParodySupergrok
           </a>
         </div>
+
+        <div class="flex items-center gap-8 text-sm font-mono">
+          <div>CA: <span id="ca-display" onclick="copyCA()" class="text-[#00f0ff] cursor-pointer">0x00869e8e2e0343edd11314e6ccb0d78d51547ee5</span></div>
+        </div>
       </div>
+
       <div class="flex justify-center">
-        <img src="assets/superman-grok.jpg" alt="SuperGrok" class="max-h-[420px] md:max-h-[520px] w-auto rounded-3xl border border-white/10 shadow-2xl">
+        <img src="assets/superman-grok.jpg" alt="SuperGrok Hero" 
+          class="max-h-[520px] w-auto drop-shadow-2xl rounded-3xl border border-white/10">
       </div>
     </div>
   </header>
 
-  <!-- ABOUT, TOKENOMICS, CHART sections omitted for brevity but identical to previous with glass cards and proper IDs -->
-
-  <!-- BUY WIDGET (fixed & mobile-safe) -->
-  <section id="buy" class="py-20 md:py-24 bg-black">
+  <!-- LIVE CHART -->
+  <section id="chart" class="py-16 bg-black">
     <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-5xl font-bold text-center mb-6 neon-cyan">Buy $SUPERGROK Instantly</h2>
-      <p class="text-center text-white/70 mb-10">Direct Uniswap V3 swap — ETH to $SUPERGROK. Zero taxes.</p>
-      
-      <div class="max-w-4xl mx-auto bg-[#111] rounded-3xl p-4 border border-white/10">
-        <div class="iframe-container">
-          <iframe src="https://app.uniswap.org/#/swap?chain=ethereum&outputCurrency=0x00869e8e2e0343edd11314e6ccb0d78d51547ee5&theme=dark" 
-            allowfullscreen style="border:0; width:100%; height:100%;"></iframe>
+      <h2 class="text-5xl font-bold text-center mb-10 neon-cyan">LIVE CHART</h2>
+      <div class="bg-[#111] rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
+        <div class="chart-container">
+          <iframe id="dex-chart" allowfullscreen></iframe>
         </div>
-        <div class="text-center mt-6 md:hidden">
-          <a href="https://app.uniswap.org/#/swap?chain=ethereum&outputCurrency=0x00869e8e2e0343edd11314e6ccb0d78d51547ee5" target="_blank"
-            class="inline-flex items-center gap-3 text-[#00f0ff] hover:underline font-medium">
-            Open Uniswap in new tab for best mobile experience <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          </a>
+      </div>
+      <p class="text-center text-white/50 text-sm mt-4">Real-time Uniswap data • Powered by DexScreener</p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-24 bg-[#0a0a0a]">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-5xl font-bold text-center mb-16 neon-cyan">About $SUPERGROK</h2>
+      <div class="grid md:grid-cols-3 gap-10 text-center">
+        <div class="bg-white/5 p-8 rounded-3xl border border-white/10 hover:border-[#00f0ff]/30 transition">
+          <i class="fa-solid fa-robot text-5xl text-[#00f0ff] mb-6"></i>
+          <h3 class="text-2xl font-semibold mb-3">Powered by SuperGrok</h3>
+          <p class="text-white/70">Built for the xAI era. The ultimate AI superhero memecoin.</p>
+        </div>
+        <div class="bg-white/5 p-8 rounded-3xl border border-white/10 hover:border-[#00f0ff]/30 transition">
+          <i class="fa-solid fa-users text-5xl text-[#00f0ff] mb-6"></i>
+          <h3 class="text-2xl font-semibold mb-3">Community First</h3>
+          <p class="text-white/70">100% organic. No team tokens. No taxes. No bullshit.</p>
+        </div>
+        <div class="bg-white/5 p-8 rounded-3xl border border-white/10 hover:border-[#00f0ff]/30 transition">
+          <i class="fa-solid fa-shield-halved text-5xl text-[#00f0ff] mb-6"></i>
+          <h3 class="text-2xl font-semibold mb-3">Clean Contract</h3>
+          <p class="text-white/70">Zero taxes. Renounced. Liquidity burned.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- DEXSCREENER CHART -->
-  <section id="chart" class="py-20 md:py-24 bg-[#111]">
+  <!-- TOKENOMICS -->
+  <section id="tokenomics" class="py-24 bg-[#111]">
     <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-5xl font-bold text-center mb-8 neon-cyan">Live Chart</h2>
-      <div class="glass rounded-3xl p-4 border border-white/10">
-        <iframe src="https://dexscreener.com/ethereum/0x00869e8e2e0343edd11314e6ccb0d78d51547ee5?embed=1&theme=dark" 
-          width="100%" height="620" style="border:0; border-radius:16px;"></iframe>
+      <h2 class="text-5xl font-bold text-center mb-16 neon-cyan">Tokenomics</h2>
+      <div class="max-w-2xl mx-auto bg-white/5 rounded-3xl p-10 border border-white/10">
+        <div class="space-y-6 text-lg">
+          <div class="flex justify-between"><span class="text-white/70">Total Supply</span><span class="font-mono">1,000,000,000 $SUPERGROK</span></div>
+          <div class="flex justify-between"><span class="text-white/70">Taxes</span><span class="font-mono text-[#00f0ff]">0% / 0%</span></div>
+          <div class="flex justify-between"><span class="text-white/70">Liquidity</span><span class="font-mono text-[#00f0ff]">Burned</span></div>
+          <div class="flex justify-between"><span class="text-white/70">Ownership</span><span class="font-mono">Renounced</span></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- LIVE X FEED (rate-limit resilient) -->
-  <section id="community" class="py-20 md:py-24 bg-black">
+  <!-- HOW TO BUY -->
+  <section id="howtobuy" class="py-24 bg-black">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center md:text-left mb-10">
-        <h2 class="text-5xl font-bold neon-cyan">Live from X</h2>
-        <p class="text-white/70">@ParodySupergrok • Real-time $SUPERGROK posts</p>
+      <h2 class="text-5xl font-bold text-center mb-16 neon-cyan">How to Buy $SUPERGROK</h2>
+      <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div class="text-center">
+          <div class="text-6xl mb-6">1</div>
+          <h4 class="font-semibold text-xl mb-2">Get ETH</h4>
+          <p class="text-white/70">Buy ETH on any exchange and send to your wallet.</p>
+        </div>
+        <div class="text-center">
+          <div class="text-6xl mb-6">2</div>
+          <h4 class="font-semibold text-xl mb-2">Swap on Uniswap</h4>
+          <p class="text-white/70">Connect wallet → Swap ETH for $SUPERGROK.</p>
+        </div>
+        <div class="text-center">
+          <div class="text-6xl mb-6">3</div>
+          <h4 class="font-semibold text-xl mb-2">Add to Wallet</h4>
+          <p class="text-white/70">Import the CA so $SUPERGROK appears.</p>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section id="community" class="py-24 bg-[#111]">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="text-5xl font-bold mb-8 neon-cyan">Join the Legion</h2>
+      <p class="text-xl text-white/70 mb-12">The most based community in crypto. Be part of the movement.</p>
       
-      <div class="glass rounded-3xl p-6 border border-white/10 min-h-[500px] flex flex-col items-center justify-center">
-        <a class="twitter-timeline" href="https://twitter.com/ParodySupergrok" 
-           data-height="480" data-theme="dark" data-chrome="nofooter noheader transparent" data-tweet-limit="8">
+      <div class="flex flex-wrap justify-center gap-6">
+        <a href="https://x.com/ParodySupergrok" target="_blank" class="flex items-center gap-4 bg-white/10 hover:bg-white/20 px-8 py-6 rounded-3xl transition text-xl">
+          <i class="fa-brands fa-x-twitter text-4xl"></i>
+          <div><strong>X</strong><br>@ParodySupergrok</div>
         </a>
-        <div id="x-fallback" class="hidden text-center mt-8">
-          <p class="text-white/60 mb-4">X embed is rate-limited right now (common in 2026).</p>
-          <a href="https://x.com/ParodySupergrok" target="_blank" 
-            class="inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 px-8 py-4 rounded-2xl transition">
-            <i class="fa-brands fa-x-twitter text-2xl"></i>
-            <span class="font-medium">Open @ParodySupergrok directly on X</span>
-          </a>
-        </div>
+        <a href="#" target="_blank" class="flex items-center gap-4 bg-white/10 hover:bg-white/20 px-8 py-6 rounded-3xl transition text-xl">
+          <i class="fa-brands fa-telegram text-4xl"></i>
+          <div><strong>Telegram</strong><br>Join the group</div>
+        </a>
+        <a href="https://dexscreener.com/ethereum/0x2b770b27744f84b3698cd4a968041008a8ea35c7" target="_blank" class="flex items-center gap-4 bg-white/10 hover:bg-white/20 px-8 py-6 rounded-3xl transition text-xl">
+          <i class="fa-solid fa-chart-line text-4xl"></i>
+          <div><strong>Chart</strong><br>DexScreener</div>
+        </a>
       </div>
     </div>
   </section>
@@ -155,43 +223,73 @@
   <!-- FOOTER -->
   <footer class="bg-black border-t border-white/10 py-12">
     <div class="max-w-7xl mx-auto px-6 text-center text-white/50 text-sm">
-      <p>© 2026 $SUPERGROK • Powered by Supergrok • Community-driven Ethereum memecoin</p>
+      <p>© 2026 $SUPERGROK • Community-driven Ethereum memecoin • Powered by SuperGrok</p>
+      <p class="mt-2">Not financial advice • Built for the xAI movement</p>
     </div>
   </footer>
 
-  <script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <script>
-    tailwind.config = { content: [] }
+    // Tailwind
+    tailwind.config = { content: [] };
+
+    const CA = "0x00869e8e2e0343edd11314e6ccb0d78d51547ee5";
+
+    // Live price + chart fetch
+    async function fetchLiveData() {
+      try {
+        const res = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${CA}`);
+        const data = await res.json();
+        const pair = data.pairs && data.pairs[0];
+        if (!pair) return;
+
+        // Ticker
+        document.getElementById('live-price').textContent = '$' + parseFloat(pair.priceUsd).toFixed(8);
+        const change = pair.priceChange.h24;
+        const changeEl = document.getElementById('live-change');
+        changeEl.textContent = (change >= 0 ? '+' : '') + change.toFixed(2) + '%';
+        changeEl.className = change >= 0 ? 'font-mono font-bold text-green-400' : 'font-mono font-bold text-red-400';
+        document.getElementById('live-mcap').textContent = '$' + Number(pair.fdv || pair.marketCap).toLocaleString();
+        document.getElementById('live-liq').textContent = '$' + Number(pair.liquidity.usd).toLocaleString();
+        document.getElementById('live-vol').textContent = '$' + Number(pair.volume.h24).toLocaleString();
+
+        // Dynamic chart embed (auto-updates to newest main pair)
+        const chartUrl = `https://dexscreener.com/ethereum/${pair.pairAddress}?theme=dark`;
+        document.getElementById('dex-chart').src = chartUrl;
+      } catch (e) {
+        console.log('Live data fetch failed – will retry');
+      }
+    }
+
+    function copyCA() {
+      navigator.clipboard.writeText(CA).then(() => {
+        const btn = document.getElementById('ca-text');
+        const original = btn.textContent;
+        btn.textContent = '✓ COPIED';
+        setTimeout(() => btn.textContent = original, 2000);
+      });
+    }
 
     // Mobile menu
     document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-      const menu = document.getElementById('mobile-menu')
-      menu.classList.toggle('hidden')
-    })
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
 
-    function copyCA() {
-      navigator.clipboard.writeText("0x00869e8e2e0343edd11314e6ccb0d78d51547ee5").then(() => {
-        alert("CA copied to clipboard!")
-      })
-    }
-
-    async function loadLivePrice() {
-      try {
-        const res = await fetch('https://api.dexscreener.com/latest/dex/tokens/0x00869e8e2e0343edd11314e6ccb0d78d51547ee5')
-        const data = await res.json()
-        const pair = data.pairs[0]
-        if (pair) {
-          document.getElementById('live-price').textContent = '$' + parseFloat(pair.priceUsd).toFixed(8)
-          // ... (change, volume, mcap logic same as before)
-          document.getElementById('price-ticker').classList.remove('hidden')
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        if (this.getAttribute('href') !== '#') {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
         }
-      } catch(e) {}
-    }
+      });
+    });
 
+    // Init
     window.onload = () => {
-      loadLivePrice()
-      setInterval(loadLivePrice, 30000)
-    }
+      fetchLiveData();
+      setInterval(fetchLiveData, 30000); // refresh every 30s
+    };
   </script>
 </body>
 </html>
