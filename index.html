@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Official $SUPERGROK - Powered by Supergrok. The ultimate AI superhero memecoin on Ethereum.">
+  <meta name="description" content="Official $SUPERGROK — Powered by Supergrok. The ultimate AI superhero memecoin on Ethereum.">
   <title>$SUPERGROK | Official</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -12,24 +12,29 @@
     body { font-family: 'Inter', system-ui, sans-serif; }
     .neon-cyan { text-shadow: 0 0 20px #00f0ff, 0 0 40px #00f0ff; }
     .hero-bg { background: linear-gradient(rgba(10,10,10,0.88), rgba(10,10,10,0.95)), url('assets/supergrok-cyber.jpg'); background-size: cover; background-position: center; }
-    .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(12px); }
-    .ticker { animation: ticker-slide 30s linear infinite; }
+    .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(16px); }
+    .iframe-container { position: relative; padding-top: 100%; } /* responsive iframe */
+    .iframe-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 20px; }
+    @media (max-width: 768px) {
+      .hero-text { font-size: 2.75rem; line-height: 1.1; }
+      .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+    }
   </style>
 </head>
 <body class="bg-[#0a0a0a] text-white overflow-x-hidden">
 
   <!-- LIVE PRICE TICKER -->
-  <div id="price-ticker" class="bg-black border-b border-[#00f0ff]/30 py-2 text-sm font-medium hidden">
-    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between gap-8 overflow-hidden">
-      <div class="flex items-center gap-8 whitespace-nowrap">
+  <div id="price-ticker" class="bg-black border-b border-[#00f0ff]/30 py-2 text-sm font-medium">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between gap-6 overflow-hidden">
+      <div class="flex items-center gap-6 whitespace-nowrap flex-1">
         <span class="flex items-center gap-2"><i class="fa-solid fa-chart-line text-[#00f0ff]"></i> <strong>$SUPERGROK</strong></span>
         <span id="live-price" class="font-mono text-[#00f0ff]">—</span>
         <span id="live-change" class="font-mono"></span>
-        <span id="live-volume" class="font-mono text-white/70"></span>
-        <span id="live-mcap" class="font-mono text-white/70"></span>
+        <span id="live-volume" class="font-mono text-white/70 hidden sm:inline"></span>
+        <span id="live-mcap" class="font-mono text-white/70 hidden sm:inline"></span>
       </div>
-      <a href="https://dexscreener.com/ethereum/0x00869e8e2e0343edd11314e6ccb0d78d51547ee5" target="_blank" class="text-[#00f0ff] hover:underline flex items-center gap-1 text-xs">
-        VIEW FULL CHART <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      <a href="https://dexscreener.com/ethereum/0x00869e8e2e0343edd11314e6ccb0d78d51547ee5" target="_blank" class="text-[#00f0ff] hover:underline text-xs flex items-center gap-1 whitespace-nowrap">
+        FULL CHART <i class="fa-solid fa-arrow-up-right-from-square"></i>
       </a>
     </div>
   </div>
@@ -38,27 +43,42 @@
   <nav class="fixed top-0 left-0 right-0 bg-black/95 backdrop-blur-md z-50 border-b border-white/10">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <img src="assets/supergrok-logo.png" alt="SuperGrok" class="h-10 w-auto">
+        <img src="assets/supergrok-logo.png" alt="SuperGrok" class="h-9 w-auto">
         <span class="text-2xl font-bold tracking-tighter neon-cyan">$SUPERGROK</span>
       </div>
       
       <div class="hidden md:flex items-center gap-8 text-sm font-medium">
         <a href="#about" class="hover:text-[#00f0ff] transition">About</a>
         <a href="#tokenomics" class="hover:text-[#00f0ff] transition">Tokenomics</a>
-        <a href="#buy" class="hover:text-[#00f0ff] transition">Buy Now</a>
+        <a href="#buy" class="hover:text-[#00f0ff] transition">Buy</a>
         <a href="#chart" class="hover:text-[#00f0ff] transition">Chart</a>
         <a href="#community" class="hover:text-[#00f0ff] transition">Community</a>
       </div>
 
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-3">
         <button onclick="copyCA()" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 border border-white/30 rounded-2xl text-sm font-medium flex items-center gap-2 transition">
           <i class="fa-solid fa-copy"></i>
-          <span id="ca-text">Copy CA</span>
+          <span id="ca-text" class="hidden sm:inline">Copy CA</span>
         </button>
-        <a href="https://x.com/ParodySupergrok" target="_blank" class="px-6 py-2.5 bg-[#00f0ff] hover:bg-[#00d4e0] text-black font-semibold rounded-2xl transition flex items-center gap-2">
+        <a href="https://x.com/ParodySupergrok" target="_blank" class="px-5 py-2.5 bg-[#00f0ff] hover:bg-[#00d4e0] text-black font-semibold rounded-2xl transition flex items-center gap-2">
           <i class="fa-brands fa-x-twitter"></i> @ParodySupergrok
         </a>
+        
+        <!-- Mobile Hamburger -->
+        <button id="mobile-menu-btn" class="md:hidden text-3xl p-2">
+          <i class="fa-solid fa-bars"></i>
+        </button>
       </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-white/10 px-6 py-6 text-center space-y-6 text-lg">
+      <a href="#about" class="block py-2 hover:text-[#00f0ff]">About</a>
+      <a href="#tokenomics" class="block py-2 hover:text-[#00f0ff]">Tokenomics</a>
+      <a href="#buy" class="block py-2 hover:text-[#00f0ff]">Buy Now</a>
+      <a href="#chart" class="block py-2 hover:text-[#00f0ff]">Live Chart</a>
+      <a href="#community" class="block py-2 hover:text-[#00f0ff]">Community</a>
+      <a href="https://x.com/ParodySupergrok" target="_blank" class="block py-2 text-[#00f0ff]">Follow @ParodySupergrok on X</a>
     </div>
   </nav>
 
@@ -66,60 +86,58 @@
   <header class="hero-bg min-h-screen flex items-center pt-20">
     <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
       <div class="space-y-8">
-        <h1 class="text-6xl md:text-7xl font-bold leading-none tracking-tighter neon-cyan">
+        <h1 class="hero-text text-6xl md:text-7xl font-bold leading-none tracking-tighter neon-cyan">
           SUPER<br>GROK
         </h1>
-        <p class="text-2xl text-white/80">Powered by Supergrok — The ultimate AI superhero memecoin on Ethereum.<br>Community-driven. Zero taxes. Built to dominate.</p>
+        <p class="text-2xl text-white/80">Powered by Supergrok — The ultimate AI superhero memecoin on Ethereum.<br>Zero taxes. Liquidity burned. Community owned.</p>
         
         <div class="flex flex-wrap gap-4">
-          <a onclick="document.getElementById('buy').scrollIntoView({behavior:'smooth'})" 
-            class="px-8 py-4 bg-[#00f0ff] hover:bg-[#00d4e0] text-black text-xl font-bold rounded-3xl transition flex items-center gap-3 cursor-pointer">
+          <a onclick="document.getElementById('buy').scrollIntoView({behavior:'smooth'})" class="px-8 py-4 bg-[#00f0ff] hover:bg-[#00d4e0] text-black text-xl font-bold rounded-3xl transition flex items-center gap-3">
             <i class="fa-solid fa-rocket"></i> BUY NOW
           </a>
-          <a href="https://x.com/ParodySupergrok" target="_blank" 
-            class="px-8 py-4 border border-white/30 hover:border-white/60 rounded-3xl text-xl font-medium flex items-center gap-3 transition">
-            <i class="fa-brands fa-x-twitter"></i> Follow @ParodySupergrok
+          <a href="https://x.com/ParodySupergrok" target="_blank" class="px-8 py-4 border border-white/30 hover:border-white/60 rounded-3xl text-xl font-medium flex items-center gap-3 transition">
+            <i class="fa-brands fa-x-twitter"></i> @ParodySupergrok
           </a>
         </div>
 
         <div class="flex items-center gap-8 text-sm font-mono">
-          <div>CA: <span id="ca-display" class="text-[#00f0ff]">0x00869e8e2e0343edd11314e6ccb0d78d51547ee5</span></div>
-          <div class="flex items-center gap-2"><div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div> LIVE ON ETHEREUM</div>
+          <div>CA: <span class="text-[#00f0ff] break-all">0x00869e8e2e0343edd11314e6ccb0d78d51547ee5</span></div>
+          <div class="flex items-center gap-2"><div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div> LIVE</div>
         </div>
       </div>
 
-      <div class="flex justify-center">
+      <div class="flex justify-center pt-8 md:pt-0">
         <img src="assets/superman-grok.jpg" alt="SuperGrok Hero" class="max-h-[520px] w-auto drop-shadow-2xl rounded-3xl border border-white/10">
       </div>
     </div>
   </header>
 
   <!-- ABOUT -->
-  <section id="about" class="py-24 bg-black">
+  <section id="about" class="section-padding bg-black">
     <div class="max-w-7xl mx-auto px-6">
       <h2 class="text-5xl font-bold text-center mb-16 neon-cyan">About $SUPERGROK</h2>
-      <div class="grid md:grid-cols-3 gap-10">
-        <div class="glass p-8 rounded-3xl border border-white/10 hover:border-[#00f0ff]/50 transition">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="glass p-8 rounded-3xl border border-white/10 hover:border-[#00f0ff]/50 transition-all">
           <i class="fa-solid fa-robot text-5xl text-[#00f0ff] mb-6"></i>
           <h3 class="text-2xl font-semibold mb-3">Powered by Supergrok</h3>
-          <p class="text-white/70">The AI superhero memecoin built for the xAI era. Maximum intelligence, maximum memes.</p>
+          <p class="text-white/70">The AI superhero memecoin built for the xAI era. Maximum intelligence. Maximum memes.</p>
         </div>
-        <div class="glass p-8 rounded-3xl border border-white/10 hover:border-[#00f0ff]/50 transition">
+        <div class="glass p-8 rounded-3xl border border-white/10 hover:border-[#00f0ff]/50 transition-all">
           <i class="fa-solid fa-users text-5xl text-[#00f0ff] mb-6"></i>
           <h3 class="text-2xl font-semibold mb-3">100% Community</h3>
-          <p class="text-white/70">Organic growth only. No team allocation. No backdoor taxes. Pure meme power.</p>
+          <p class="text-white/70">Organic growth. No team tokens. No backdoors. Pure community power.</p>
         </div>
-        <div class="glass p-8 rounded-3xl border border-white/10 hover:border-[#00f0ff]/50 transition">
+        <div class="glass p-8 rounded-3xl border border-white/10 hover:border-[#00f0ff]/50 transition-all">
           <i class="fa-solid fa-shield-halved text-5xl text-[#00f0ff] mb-6"></i>
-          <h3 class="text-2xl font-semibold mb-3">Clean &amp; Secure</h3>
-          <p class="text-white/70">0% taxes • Ownership renounced • Liquidity burned • Contract verified.</p>
+          <h3 class="text-2xl font-semibold mb-3">Clean Contract</h3>
+          <p class="text-white/70">0% taxes • Liquidity burned • Ownership renounced • Verified</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- TOKENOMICS -->
-  <section id="tokenomics" class="py-24 bg-[#111]">
+  <section id="tokenomics" class="section-padding bg-[#111]">
     <div class="max-w-7xl mx-auto px-6">
       <h2 class="text-5xl font-bold text-center mb-16 neon-cyan">Tokenomics</h2>
       <div class="max-w-2xl mx-auto glass rounded-3xl p-10 border border-white/10">
@@ -134,60 +152,51 @@
   </section>
 
   <!-- BUY WIDGET -->
-  <section id="buy" class="py-24 bg-black">
+  <section id="buy" class="section-padding bg-black">
     <div class="max-w-7xl mx-auto px-6">
       <h2 class="text-5xl font-bold text-center mb-8 neon-cyan">Buy $SUPERGROK Instantly</h2>
-      <p class="text-center text-white/70 mb-12 max-w-md mx-auto">Swap ETH for $SUPERGROK directly on Uniswap V3. Zero taxes. Instant.</p>
+      <p class="text-center text-white/70 mb-12 max-w-md mx-auto">Swap ETH for $SUPERGROK directly on Uniswap V3. Zero taxes. Instant settlement.</p>
       
-      <div class="max-w-3xl mx-auto bg-[#111] rounded-3xl p-2 border border-white/10">
-        <iframe 
-          src="https://app.uniswap.org/#/swap?chain=ethereum&outputCurrency=0x00869e8e2e0343edd11314e6ccb0d78d51547ee5" 
-          width="100%" 
-          height="580" 
-          style="border:0; border-radius:20px;" 
-          allowfullscreen>
-        </iframe>
+      <div class="max-w-3xl mx-auto bg-[#111] rounded-3xl p-3 border border-white/10">
+        <iframe src="https://app.uniswap.org/#/swap?chain=ethereum&outputCurrency=0x00869e8e2e0343edd11314e6ccb0d78d51547ee5" 
+                width="100%" height="520" style="border:0;" allowfullscreen></iframe>
       </div>
+      
+      <div class="text-center mt-6 text-xs text-white/50">If the widget doesn’t load, <a href="https://app.uniswap.org/#/swap?chain=ethereum&outputCurrency=0x00869e8e2e0343edd11314e6ccb0d78d51547ee5" target="_blank" class="underline">open Uniswap in a new tab →</a></div>
     </div>
   </section>
 
   <!-- DEXSCREENER CHART -->
-  <section id="chart" class="py-24 bg-[#111]">
+  <section id="chart" class="section-padding bg-[#111]">
     <div class="max-w-7xl mx-auto px-6">
       <h2 class="text-5xl font-bold text-center mb-8 neon-cyan">Live Chart</h2>
-      <div class="glass rounded-3xl p-3 border border-white/10 overflow-hidden">
-        <iframe 
-          src="https://dexscreener.com/ethereum/0x00869e8e2e0343edd11314e6ccb0d78d51547ee5?embed=1&theme=dark" 
-          width="100%" 
-          height="620" 
-          style="border:0; border-radius:20px;">
-        </iframe>
+      <div class="max-w-5xl mx-auto glass rounded-3xl p-3 border border-white/10 overflow-hidden">
+        <iframe src="https://dexscreener.com/ethereum/0x00869e8e2e0343edd11314e6ccb0d78d51547ee5?embed=1&theme=dark" 
+                width="100%" height="620" style="border:0;" allowfullscreen></iframe>
       </div>
     </div>
   </section>
 
   <!-- LIVE X FEED -->
-  <section id="community" class="py-24 bg-black">
+  <section id="community" class="section-padding bg-black">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="flex justify-between items-end mb-12">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
         <div>
           <h2 class="text-5xl font-bold neon-cyan">Live from X</h2>
-          <p class="text-white/70">@ParodySupergrok • Every $SUPERGROK post in real time</p>
+          <p class="text-white/70">@ParodySupergrok • Real-time $SUPERGROK posts</p>
         </div>
-        <a href="https://x.com/ParodySupergrok" target="_blank" class="text-[#00f0ff] hover:underline flex items-center gap-2">
+        <a href="https://x.com/ParodySupergrok" target="_blank" class="text-[#00f0ff] hover:underline flex items-center gap-2 text-lg">
           Follow @ParodySupergrok <i class="fa-brands fa-x-twitter"></i>
         </a>
       </div>
       
-      <!-- Twitter Timeline Embed -->
       <a class="twitter-timeline" 
          href="https://twitter.com/ParodySupergrok" 
          data-height="700" 
          data-theme="dark" 
-         data-chrome="nofooter noheader transparent">
+         data-chrome="noheader nofooter transparent noscrollbar"
+         data-tweet-limit="8">
       </a>
-      
-      <p class="text-center text-xs text-white/50 mt-8">Posts containing <span class="font-mono">$SUPERGROK</span> appear here live. Refresh page to load latest.</p>
     </div>
   </section>
 
@@ -210,50 +219,47 @@
       navigator.clipboard.writeText(ca).then(() => {
         const btn = document.getElementById('ca-text')
         const original = btn.textContent
-        btn.textContent = 'COPIED ✓'
-        setTimeout(() => btn.textContent = original, 2000)
+        btn.textContent = '✓ COPIED'
+        setTimeout(() => btn.textContent = original || 'Copy CA', 2000)
       })
     }
 
-    // Live DexScreener Price Ticker
+    // Live Price Ticker
     async function loadLivePrice() {
       try {
         const res = await fetch('https://api.dexscreener.com/latest/dex/tokens/0x00869e8e2e0343edd11314e6ccb0d78d51547ee5')
         const data = await res.json()
+        const pair = data.pairs.sort((a,b) => b.liquidity.usd - a.liquidity.usd)[0]
+        if (!pair) return
         
-        // Find the main pair (highest liquidity)
-        const mainPair = data.pairs.sort((a,b) => b.liquidity.usd - a.liquidity.usd)[0]
-        if (!mainPair) return
-        
-        const price = parseFloat(mainPair.priceUsd).toFixed(8)
-        const change24h = mainPair.priceChange.h24
-        const volume = mainPair.volume.h24
-        const mcap = mainPair.fdv || mainPair.marketCap || '—'
-        
-        document.getElementById('live-price').textContent = `$${price}`
+        document.getElementById('live-price').textContent = `$${parseFloat(pair.priceUsd).toFixed(8)}`
         const changeEl = document.getElementById('live-change')
-        changeEl.textContent = `${change24h >= 0 ? '▲' : '▼'} ${Math.abs(change24h).toFixed(1)}%`
-        changeEl.style.color = change24h >= 0 ? '#22c55e' : '#ef4444'
+        const ch = pair.priceChange.h24
+        changeEl.textContent = `${ch >= 0 ? '▲' : '▼'} ${Math.abs(ch).toFixed(1)}%`
+        changeEl.style.color = ch >= 0 ? '#22c55e' : '#ef4444'
         
-        document.getElementById('live-volume').innerHTML = `24h Vol: <span class="font-mono">$${(volume/1000).toFixed(0)}k</span>`
-        document.getElementById('live-mcap').innerHTML = `MCAP: <span class="font-mono">$${(mcap/1000000).toFixed(2)}M</span>`
-        
-        document.getElementById('price-ticker').classList.remove('hidden')
-      } catch(e) {
-        console.log('Price ticker temporarily unavailable')
-      }
+        document.getElementById('live-volume').innerHTML = `Vol: <span class="font-mono">$${(pair.volume.h24/1000).toFixed(0)}k</span>`
+        document.getElementById('live-mcap').innerHTML = `MC: <span class="font-mono">$${(pair.fdv/1000000).toFixed(1)}M</span>`
+      } catch(e) {}
     }
 
-    // Mobile menu
+    // Mobile Menu
     function initMobileMenu() {
-      const btn = document.createElement('button')
-      // (kept simple - full mobile menu from previous version still works if you kept it)
+      const btn = document.getElementById('mobile-menu-btn')
+      const menu = document.getElementById('mobile-menu')
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden')
+        btn.innerHTML = menu.classList.contains('hidden') 
+          ? '<i class="fa-solid fa-bars"></i>' 
+          : '<i class="fa-solid fa-xmark"></i>'
+      })
     }
 
-    // Init everything
+    // Initialize
     window.onload = () => {
       loadLivePrice()
-      setInterval(loadLivePrice, 30000) // refresh every 30s
+      setInterval(loadLivePrice, 30000)
+      initMobileMenu()
       
       // Smooth scroll
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
