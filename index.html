@@ -3,229 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SuperGrok - Community-rebuilt ERC20 memecoin on Ethereum. Zero taxes, no backdoors, organic growth powered by SuperGrok X subscription.">
-    <title>SuperGrok • $SGROK | Community Rebuilt on Ethereum</title>
+    <meta name="description" content="SuperGrok ($SUPERGROK) - The community-reborn ERC20 memecoin on Ethereum. Powered by Grok & SuperGrok X. Organic launch. Zero taxes. Real utility through the flywheel.">
+    <title>SuperGrok | $SUPERGROK • Community Reborn on Ethereum</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
         
         :root {
-            --neon-cyan: #00f7ff;
-            --neon-purple: #c300ff;
+            --neon-cyan: #22d3ee;
+            --neon-purple: #c026d3;
         }
         
-        body {
-            font-family: 'Inter', system-ui, sans-serif;
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
         }
         
-        .header-font {
-            font-family: 'Press Start 2P', system-ui;
-        }
-        
-        .neon-text-cyan {
-            text-shadow: 0 0 10px var(--neon-cyan),
-                        0 0 20px var(--neon-cyan),
-                        0 0 40px var(--neon-cyan);
-        }
-        
-        .neon-text-purple {
-            text-shadow: 0 0 10px var(--neon-purple),
-                        0 0 20px var(--neon-purple),
-                        0 0 40px var(--neon-purple);
+        .tail-container * {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
         
         .hero-bg {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)),
-                        url('https://yourdomain.com/supergrok-header.png') center/cover no-repeat;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('SuperGrokHeader.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .neon-text {
+            text-shadow: 
+                0 0 10px var(--neon-cyan),
+                0 0 20px var(--neon-cyan),
+                0 0 40px var(--neon-purple);
+        }
+        
+        .neon-button {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .neon-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 40%;
+            height: 300%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255,255,255,0.4),
+                transparent
+            );
+            transform: skewX(-25deg);
+            animation: shimmer 4s linear infinite;
+        }
+        
+        @keyframes shimmer {
+            100% {
+                transform: translateX(200%);
+            }
         }
         
         .glass {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
         }
         
-        .scanline {
-            position: relative;
-        }
-        
-        .scanline::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                to bottom,
-                transparent 50%,
-                rgba(0, 247, 255, 0.15) 50%
-            );
-            background-size: 100% 6px;
-            pointer-events: none;
-            animation: scan 4s linear infinite;
-        }
-        
-        @keyframes scan {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 100%; }
+        .section-header {
+            font-family: 'Press Start 2P', system-ui;
+            letter-spacing: 4px;
         }
     </style>
 </head>
-<body class="bg-black text-white overflow-x-hidden">
+<body class="tail-container bg-zinc-950 text-white">
     <!-- NAVBAR -->
-    <nav class="border-b border-white/10 bg-black/80 backdrop-blur-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+    <nav class="bg-black/80 backdrop-blur-md border-b border-cyan-500/30 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            
             <!-- Logo -->
-            <div class="flex items-center gap-x-3">
-                <img src="https://yourdomain.com/supergrok-pfp.jpg" 
-                     alt="SuperGrok Logo" 
-                     class="w-10 h-10 rounded-2xl border border-cyan-400 shadow-[0_0_15px_#00f7ff]">
+            <div class="flex items-center gap-3">
+                <img src="SuperGrokPFP.jpg" alt="SuperGrok Logo" class="w-10 h-10 rounded-2xl border-2 border-cyan-400 shadow-[0_0_15px_#22d3ee]">
                 <div>
-                    <span class="header-font text-2xl tracking-tighter neon-text-cyan">SUPERGROK</span>
+                    <span class="text-3xl font-bold tracking-tighter neon-text text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">SUPERGROK</span>
                 </div>
             </div>
 
             <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
-                <a href="#about" class="hover:text-cyan-400 transition-colors">ABOUT THE RELAUNCH</a>
-                <a href="#tokenomics" class="hover:text-cyan-400 transition-colors">TOKENOMICS</a>
-                <a href="#howtobuy" class="hover:text-cyan-400 transition-colors">HOW TO BUY</a>
-                <a href="#community" class="hover:text-cyan-400 transition-colors">COMMUNITY</a>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#about" class="hover:text-cyan-400 flex items-center gap-1"><i class="fa-solid fa-robot"></i> STORY</a>
+                <a href="#tokenomics" class="hover:text-cyan-400 flex items-center gap-1"><i class="fa-solid fa-chart-simple"></i> TOKENOMICS</a>
+                <a href="#buy" class="hover:text-cyan-400 flex items-center gap-1"><i class="fa-solid fa-cart-shopping"></i> BUY $SUPERGROK</a>
+                <a href="#community" class="hover:text-cyan-400 flex items-center gap-1"><i class="fa-solid fa-users"></i> COMMUNITY</a>
             </div>
 
-            <div class="flex items-center gap-x-4">
-                <!-- Contract (copy button) -->
-                <div onclick="copyContract()" 
-                     class="glass px-4 py-2 rounded-2xl text-xs font-mono flex items-center gap-x-2 cursor-pointer hover:border-cyan-400 border border-white/20 transition-all">
-                    <span id="contract-display" class="text-cyan-400">0x000...0000</span>
-                    <i class="fa-solid fa-copy text-cyan-400"></i>
-                </div>
-
-                <!-- Buy Button -->
-                <a href="#howtobuy" 
-                   class="bg-gradient-to-r from-cyan-400 to-purple-500 text-black font-bold px-6 py-3 rounded-2xl flex items-center gap-x-2 hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-rocket"></i>
-                    BUY $SGROK
+            <div class="flex items-center gap-4">
+                <!-- SuperGrok X Promo -->
+                <a href="https://x.com/premium" target="_blank" 
+                   class="hidden sm:flex items-center gap-2 bg-gradient-to-r from-purple-600 to-cyan-500 text-white text-xs font-bold px-5 py-2 rounded-3xl hover:scale-105 neon-button">
+                    <i class="fa-solid fa-crown"></i>
+                    GET SUPERGROK X
                 </a>
-
+                
                 <!-- Mobile Hamburger -->
-                <button onclick="toggleMobileMenu()" class="md:hidden text-3xl text-cyan-400">
-                    <i id="hamburger-icon" class="fa-solid fa-bars"></i>
+                <button id="mobile-menu-btn"
+                        class="md:hidden text-3xl text-cyan-400 hover:text-purple-400">
+                    <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
         </div>
-
+        
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-6 border-t border-white/10">
-            <div class="flex flex-col gap-y-4 text-sm font-medium pt-4">
-                <a href="#about" onclick="toggleMobileMenu()" class="py-2">ABOUT THE RELAUNCH</a>
-                <a href="#tokenomics" onclick="toggleMobileMenu()" class="py-2">TOKENOMICS</a>
-                <a href="#howtobuy" onclick="toggleMobileMenu()" class="py-2">HOW TO BUY</a>
-                <a href="#community" onclick="toggleMobileMenu()" class="py-2">COMMUNITY</a>
-                <div class="pt-4 border-t border-white/10">
-                    <a href="https://x.com/yourxhandle" target="_blank"
-                       class="flex items-center justify-center gap-x-2 bg-white/10 py-3 rounded-2xl hover:bg-cyan-400 hover:text-black transition-all">
-                        <i class="fa-brands fa-x-twitter"></i> FOLLOW ON X
-                    </a>
-                </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 border-t border-cyan-400/30 px-6 py-6">
+            <div class="flex flex-col gap-6 text-center text-lg">
+                <a href="#about" onclick="toggleMobileMenu()" class="py-2 hover:text-cyan-400">STORY</a>
+                <a href="#tokenomics" onclick="toggleMobileMenu()" class="py-2 hover:text-cyan-400">TOKENOMICS</a>
+                <a href="#buy" onclick="toggleMobileMenu()" class="py-2 hover:text-cyan-400">BUY $SUPERGROK</a>
+                <a href="#community" onclick="toggleMobileMenu()" class="py-2 hover:text-cyan-400">COMMUNITY</a>
+                <a href="https://x.com/premium" target="_blank" class="mt-4 bg-gradient-to-r from-purple-600 to-cyan-500 py-4 rounded-3xl font-bold flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-crown"></i> SUPERCHARGED WITH SUPERGROK X
+                </a>
             </div>
         </div>
     </nav>
 
     <!-- HERO -->
-    <section class="hero-bg h-screen flex items-center relative scanline">
+    <header class="hero-bg h-screen flex items-center relative">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="flex justify-center mb-6">
-                <img src="https://yourdomain.com/supergrok-pfp.jpg" 
-                     alt="SuperGrok" 
-                     class="w-32 h-32 md:w-40 md:h-40 rounded-3xl border-4 border-cyan-400 shadow-[0_0_60px_#00f7ff] rotate-6">
+            <div class="inline-flex items-center gap-3 bg-black/70 px-6 py-2 rounded-3xl border border-cyan-400/50 mb-8">
+                <div class="w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
+                <span class="text-cyan-400 text-sm tracking-[3px] uppercase font-bold">LIVE ON ETHEREUM • COMMUNITY REBORN</span>
             </div>
             
-            <h1 class="header-font text-6xl md:text-8xl tracking-tighter neon-text-cyan mb-2">
+            <h1 class="text-7xl md:text-8xl font-black tracking-tighter neon-text mb-4">
                 SUPERGROK
             </h1>
-            <p class="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 mb-6">
-                COMMUNITY REBUILT • ZERO TAX • POWERED BY SUPERGROK X
+            <p class="text-3xl md:text-5xl font-light text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-purple-300 mb-8">
+                The Grok-powered memecoin.<br>Built by chads. Powered by X.
             </p>
             
-            <div class="max-w-md mx-auto mb-10 text-lg text-gray-300">
-                The original team abandoned us. Backdoor tax killed the chart.<br>
-                <span class="text-cyan-400 font-bold">Now the community takes over with a clean contract.</span><br>
-                Organic growth. Real utility. SuperGrok X flywheel.
-            </div>
-
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="#howtobuy" 
-                   class="w-full sm:w-auto bg-white text-black font-bold text-xl px-10 py-6 rounded-3xl flex items-center justify-center gap-x-3 hover:scale-110 transition-transform shadow-[0_0_30px_#00f7ff]">
-                    <i class="fa-solid fa-arrow-trend-up"></i>
-                    BUY $SGROK NOW
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
+                <a onclick="copyCA()" 
+                   class="neon-button w-full sm:w-auto flex-1 bg-black border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black font-bold text-xl py-6 px-10 rounded-3xl flex items-center justify-center gap-3 cursor-pointer">
+                    <i class="fa-solid fa-copy"></i>
+                    <span id="ca-text">0x0086...47ee5</span>
                 </a>
                 
-                <a href="https://x.com/yourxhandle" target="_blank"
-                   class="w-full sm:w-auto border border-cyan-400 text-cyan-400 font-bold text-xl px-10 py-6 rounded-3xl flex items-center justify-center gap-x-3 hover:bg-cyan-400 hover:text-black transition-all">
-                    <i class="fa-brands fa-x-twitter"></i>
-                    JOIN THE MOVEMENT
+                <a href="https://app.uniswap.org/swap?outputCurrency=0x00869e8e2e0343edd11314e6ccb0d78d51547ee5" 
+                   target="_blank"
+                   class="neon-button w-full sm:w-auto flex-1 bg-gradient-to-r from-cyan-400 to-purple-500 text-black font-bold text-xl py-6 px-10 rounded-3xl flex items-center justify-center gap-3 hover:scale-105">
+                    <i class="fa-solid fa-rocket"></i>
+                    BUY ON UNISWAP
                 </a>
             </div>
-
-            <div class="mt-12 flex justify-center items-center gap-x-8 text-sm">
-                <div class="flex items-center gap-x-2">
-                    <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                    <span class="font-mono">LIVE ON ETHEREUM</span>
+            
+            <div class="mt-12 flex flex-wrap justify-center gap-8 text-sm opacity-75">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                    <span>1B Supply</span>
                 </div>
-                <div class="font-mono text-cyan-400">1 BILLION SUPPLY • LP BURNED • RENOUNCED</div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                    <span>0% Tax (new era)</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                    <span>Community Owned</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                    <span>SuperGrok X Flywheel</span>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-10 left-1/2 flex flex-col items-center text-cyan-400 text-xs tracking-widest animate-bounce">
+                <i class="fa-solid fa-chevron-down text-3xl mb-2"></i>
+                SCROLL FOR THE LEGEND
             </div>
         </div>
+    </header>
 
-        <!-- Floating badge -->
-        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 glass px-6 py-3 rounded-3xl flex items-center gap-x-3 text-xs font-medium border border-purple-400">
-            <span class="text-purple-400">POWERED BY</span>
-            <span class="neon-text-purple">SUPERGROK X SUBSCRIPTION</span>
-            <i class="fa-solid fa-arrow-right"></i>
-        </div>
-    </section>
-
-    <!-- ABOUT THE RELAUNCH -->
-    <section id="about" class="py-20 bg-black border-t border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 class="header-font text-5xl mb-6 neon-text-purple">THE COMMUNITY TAKEOVER</h2>
-                    <div class="space-y-6 text-gray-300 text-lg">
-                        <p>The original Supergrok team abandoned the project. Their 1% backdoor tax was split between burns and team wallets — constant extraction that destroyed the chart.</p>
-                        <p class="text-cyan-400 font-bold">We tried a CTO. It failed because the old contract was compromised.</p>
-                        <p>Now the real community is back with a <span class="underline decoration-cyan-400">brand new, clean ERC20 contract</span>. No taxes. No backdoors. Ownership renounced. Liquidity burned.</p>
-                        <p>This is the organic Ethereum memecoin experiment: proving that communities still win when the foundation is solid.</p>
-                        
-                        <div class="flex items-center gap-x-4 pt-6">
-                            <div class="bg-white/10 px-5 py-3 rounded-2xl text-sm flex-1 text-center">
-                                <div class="text-cyan-400">ZERO TAX</div>
-                                <div class="text-xs text-gray-400">Forever</div>
-                            </div>
-                            <div class="bg-white/10 px-5 py-3 rounded-2xl text-sm flex-1 text-center">
-                                <div class="text-cyan-400">LP BURNED</div>
-                                <div class="text-xs text-gray-400">Forever locked</div>
-                            </div>
-                            <div class="bg-white/10 px-5 py-3 rounded-2xl text-sm flex-1 text-center">
-                                <div class="text-cyan-400">RENOWNED</div>
-                                <div class="text-xs text-gray-400">No team wallets</div>
-                            </div>
-                        </div>
+    <!-- ABOUT / RELAUNCH STORY -->
+    <section id="about" class="py-24 bg-zinc-900">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="section-header text-4xl text-center mb-12 text-cyan-400">THE REBIRTH OF SUPERGROK</h2>
+            
+            <div class="glass p-8 md:p-12 rounded-3xl border border-purple-400/30">
+                <p class="text-xl leading-relaxed mb-8">
+                    The original team abandoned ship. A failed CTO revealed a hidden 1% backdoor tax that quietly drained liquidity into side wallets while the chart bled. 
+                    The community was left holding bags and broken dreams.
+                </p>
+                <p class="text-xl leading-relaxed mb-8">
+                    But real chads don’t quit. We’re relaunching <strong>$SUPERGROK</strong> the right way: <span class="text-cyan-400">zero taxes, fully community-driven, and built to showcase the power of SuperGrok X subscription</span>.
+                </p>
+                <p class="text-xl leading-relaxed">
+                    This isn’t just another memecoin. It’s the ultimate flywheel experiment: 
+                    the coin promotes SuperGrok X → SuperGrok X powers organic growth → the community wins.
+                </p>
+                
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-black/50 p-6 rounded-2xl border border-cyan-400/20">
+                        <i class="fa-solid fa-handshake text-4xl text-cyan-400 mb-4"></i>
+                        <h4 class="font-bold">Organic</h4>
+                        <p class="text-sm opacity-75">No paid shills. No dev wallets dumping.</p>
                     </div>
-                </div>
-                
-                <div class="relative">
-                    <div class="glass p-8 rounded-3xl border border-cyan-400/30">
-                        <h3 class="text-xl mb-4 flex items-center gap-x-2">
-                            <i class="fa-solid fa-circle-info text-cyan-400"></i>
-                            THE SUPERGROK X FLYWHEEL
-                        </h3>
-                        <p class="text-gray-300">This website was built in minutes with zero technical experience — using SuperGrok X subscription tools. The memecoin promotes the subscription. The subscription powers the memecoin. Infinite flywheel.</p>
-                        <a href="https://x.com/premium" target="_blank" 
-                           class="mt-8 inline-flex items-center gap-x-2 text-purple-400 hover:text-purple-300">
-                            Get SuperGrok X → <i class="fa-solid fa-arrow-up-right"></i>
-                        </a>
+                    <div class="bg-black/50 p-6 rounded-2xl border border-purple-400/20">
+                        <i class="fa-solid fa-shield-halved text-4xl text-purple-400 mb-4"></i>
+                        <h4 class="font-bold">Fair</h4>
+                        <p class="text-sm opacity-75">New contract, renounced ownership, LP burned.</p>
+                    </div>
+                    <div class="bg-black/50 p-6 rounded-2xl border border-cyan-400/20">
+                        <i class="fa-solid fa-x-twitter text-4xl text-cyan-400 mb-4"></i>
+                        <h4 class="font-bold">SuperGrok X</h4>
+                        <p class="text-sm opacity-75">Premium Grok experience fuels the next leg.</p>
                     </div>
                 </div>
             </div>
@@ -233,124 +226,149 @@
     </section>
 
     <!-- TOKENOMICS -->
-    <section id="tokenomics" class="py-20 bg-gradient-to-b from-black to-zinc-950">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="header-font text-5xl text-center mb-12 neon-text-cyan">TOKENOMICS</h2>
-            
-            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <div class="glass border border-white/10 rounded-3xl p-8 text-center">
-                    <div class="text-6xl mb-4">1B</div>
-                    <div class="font-bold text-xl mb-1">Total Supply</div>
-                    <div class="text-cyan-400 text-sm">1,000,000,000 $SGROK</div>
+    <section id="tokenomics" class="py-24 bg-black">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="section-header text-4xl text-center mb-12 text-purple-400">TOKENOMICS</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass p-8 rounded-3xl text-center">
+                    <div class="text-6xl font-black text-cyan-400 mb-2">1B</div>
+                    <div class="uppercase text-sm tracking-widest mb-1">Total Supply</div>
+                    <p class="text-xs opacity-75">1,000,000,000 $SUPERGROK</p>
                 </div>
-                <div class="glass border border-white/10 rounded-3xl p-8 text-center">
-                    <div class="text-6xl mb-4">0%</div>
-                    <div class="font-bold text-xl mb-1">Buy / Sell Tax</div>
-                    <div class="text-cyan-400 text-sm">Forever — No backdoors</div>
+                <div class="glass p-8 rounded-3xl text-center">
+                    <div class="text-6xl font-black text-cyan-400 mb-2">0%</div>
+                    <div class="uppercase text-sm tracking-widest mb-1">Buy / Sell Tax</div>
+                    <p class="text-xs opacity-75">Clean contract. No backdoors. Ever.</p>
                 </div>
-                <div class="glass border border-white/10 rounded-3xl p-8 text-center">
-                    <div class="text-6xl mb-4">🔥</div>
-                    <div class="font-bold text-xl mb-1">Liquidity</div>
-                    <div class="text-cyan-400 text-sm">Burned at launch</div>
+                <div class="glass p-8 rounded-3xl text-center">
+                    <div class="text-6xl font-black text-cyan-400 mb-2">100%</div>
+                    <div class="uppercase text-sm tracking-widest mb-1">LP Burned</div>
+                    <p class="text-xs opacity-75">Liquidity locked forever on Uniswap</p>
+                </div>
+                <div class="glass p-8 rounded-3xl text-center">
+                    <div class="text-6xl font-black text-cyan-400 mb-2">REN</div>
+                    <div class="uppercase text-sm tracking-widest mb-1">Ownership</div>
+                    <p class="text-xs opacity-75">Renounced. Community ruled.</p>
                 </div>
             </div>
             
-            <p class="text-center text-sm text-gray-400 mt-12 max-w-md mx-auto">
-                Contract ownership renounced • No team allocation • Fair launch for true community holders
+            <p class="text-center text-xs mt-10 opacity-60">Contract Address (verified): 
+                <span onclick="copyCA()" class="cursor-pointer hover:text-cyan-400">0x00869e8e2e0343edd11314e6ccb0d78d51547ee5</span>
             </p>
         </div>
     </section>
 
     <!-- HOW TO BUY -->
-    <section id="howtobuy" class="py-20 border-t border-b border-white/10">
+    <section id="buy" class="py-24 bg-gradient-to-b from-zinc-900 to-black">
         <div class="max-w-4xl mx-auto px-6">
-            <h2 class="header-font text-5xl text-center mb-12 neon-text-purple">HOW TO BUY $SGROK</h2>
+            <h2 class="section-header text-4xl text-center mb-12 text-cyan-400">HOW TO BUY $SUPERGROK</h2>
             
             <div class="space-y-8">
-                <div class="flex gap-6">
-                    <div class="w-12 h-12 flex-shrink-0 bg-cyan-400 text-black rounded-2xl flex items-center justify-center text-2xl font-bold">1</div>
+                <div class="flex gap-6 items-start">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-cyan-400 text-black flex items-center justify-center font-bold text-2xl">1</div>
                     <div>
-                        <h4 class="font-bold text-xl">Get ETH on Ethereum Mainnet</h4>
-                        <p class="text-gray-400">Use Coinbase, Binance, or any wallet. Bridge to ETH if needed.</p>
+                        <h4 class="text-2xl font-bold">Get ETH on your wallet</h4>
+                        <p class="opacity-75">MetaMask, Trust Wallet, or any Ethereum wallet.</p>
                     </div>
                 </div>
-                <div class="flex gap-6">
-                    <div class="w-12 h-12 flex-shrink-0 bg-cyan-400 text-black rounded-2xl flex items-center justify-center text-2xl font-bold">2</div>
+                <div class="flex gap-6 items-start">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-cyan-400 text-black flex items-center justify-center font-bold text-2xl">2</div>
                     <div>
-                        <h4 class="font-bold text-xl">Connect to Uniswap / DEX</h4>
-                        <p class="text-gray-400">Go to app.uniswap.org → Swap ETH for $SGROK using the contract address below.</p>
+                        <h4 class="text-2xl font-bold">Swap on Uniswap</h4>
+                        <a href="https://app.uniswap.org/swap?outputCurrency=0x00869e8e2e0343edd11314e6ccb0d78d51547ee5" 
+                           target="_blank"
+                           class="inline-flex items-center gap-2 text-cyan-400 underline">Click here to swap directly →</a>
                     </div>
                 </div>
-                <div class="flex gap-6">
-                    <div class="w-12 h-12 flex-shrink-0 bg-cyan-400 text-black rounded-2xl flex items-center justify-center text-2xl font-bold">3</div>
+                <div class="flex gap-6 items-start">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-cyan-400 text-black flex items-center justify-center font-bold text-2xl">3</div>
                     <div>
-                        <h4 class="font-bold text-xl">Add to MetaMask / Wallet</h4>
-                        <p class="text-gray-400 font-mono text-sm break-all" id="contract-full">0x0000000000000000000000000000000000000000</p>
-                        <button onclick="copyContract()" class="text-xs mt-2 px-4 py-1 bg-white/10 rounded-2xl hover:bg-cyan-400 hover:text-black">COPY FULL CONTRACT</button>
+                        <h4 class="text-2xl font-bold">Add to your wallet</h4>
+                        <p class="opacity-75">Import the contract address above so $SUPERGROK appears.</p>
                     </div>
                 </div>
             </div>
             
             <div class="mt-16 text-center">
-                <a href="https://app.uniswap.org/" target="_blank" 
-                   class="inline-flex items-center px-10 py-6 bg-gradient-to-r from-cyan-400 to-purple-500 text-black text-2xl font-bold rounded-3xl hover:scale-110 transition-transform">
-                    SWAP ON UNISWAP NOW →
-                </a>
+                <p class="text-emerald-400 text-lg font-medium">Already holding the old contract? Your tokens are safe. This is the official relaunch home.</p>
             </div>
         </div>
     </section>
 
     <!-- COMMUNITY -->
-    <section id="community" class="py-20 bg-black">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="header-font text-5xl text-center mb-12 neon-text-cyan">JOIN THE MOVEMENT</h2>
+    <section id="community" class="py-24 bg-black">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="section-header text-4xl text-center mb-12 text-purple-400">JOIN THE MOVEMENT</h2>
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <a href="https://x.com/yourxhandle" target="_blank"
-                   class="glass border border-white/10 hover:border-cyan-400 rounded-3xl p-8 flex flex-col items-center text-center transition-all">
-                    <i class="fa-brands fa-x-twitter text-5xl mb-4 text-cyan-400"></i>
-                    <div class="font-bold">X / TWITTER</div>
-                    <div class="text-xs text-gray-400 mt-1">@yourxhandle (delegate access active)</div>
+                <a href="https://x.com/Meta_Fractal" target="_blank" 
+                   class="glass flex flex-col items-center justify-center p-10 rounded-3xl hover:border-cyan-400 hover:scale-105">
+                    <i class="fa-brands fa-x-twitter text-6xl mb-6"></i>
+                    <span class="font-bold">X / TWITTER</span>
+                    <span class="text-xs opacity-60 mt-1">@Meta_Fractal (delegate access)</span>
                 </a>
                 
-                <a href="https://t.me/yournewtg" target="_blank"
-                   class="glass border border-white/10 hover:border-purple-400 rounded-3xl p-8 flex flex-col items-center text-center transition-all">
-                    <i class="fa-brands fa-telegram text-5xl mb-4 text-purple-400"></i>
-                    <div class="font-bold">TELEGRAM</div>
-                    <div class="text-xs text-gray-400 mt-1">New official group</div>
+                <a href="https://t.me/supergrok_portal" target="_blank" 
+                   class="glass flex flex-col items-center justify-center p-10 rounded-3xl hover:border-purple-400 hover:scale-105">
+                    <i class="fa-brands fa-telegram text-6xl mb-6"></i>
+                    <span class="font-bold">TELEGRAM</span>
+                    <span class="text-xs opacity-60 mt-1">New community portal</span>
                 </a>
                 
-                <div class="glass border border-white/10 rounded-3xl p-8 flex flex-col items-center text-center">
-                    <i class="fa-solid fa-chart-line text-5xl mb-4 text-cyan-400"></i>
-                    <div class="font-bold">DEXSCREENER</div>
-                    <div class="text-xs text-gray-400 mt-1">Live chart coming at launch</div>
-                </div>
+                <a href="#" onclick="alert('New website live! Bookmark supergroketh.xyz')" 
+                   class="glass flex flex-col items-center justify-center p-10 rounded-3xl hover:border-cyan-400 hover:scale-105">
+                    <i class="fa-solid fa-globe text-6xl mb-6"></i>
+                    <span class="font-bold">WEBSITE</span>
+                    <span class="text-xs opacity-60 mt-1">supergroketh.xyz</span>
+                </a>
                 
-                <div class="glass border border-white/10 rounded-3xl p-8 flex flex-col items-center text-center">
-                    <i class="fa-solid fa-globe text-5xl mb-4 text-purple-400"></i>
-                    <div class="font-bold">WEBSITE</div>
-                    <div class="text-xs text-gray-400 mt-1">supergroketh.xyz (you are here)</div>
-                </div>
+                <a href="https://dexscreener.com/ethereum/0x00869e8e2e0343edd11314e6ccb0d78d51547ee5" target="_blank" 
+                   class="glass flex flex-col items-center justify-center p-10 rounded-3xl hover:border-purple-400 hover:scale-105">
+                    <i class="fa-solid fa-chart-line text-6xl mb-6"></i>
+                    <span class="font-bold">CHART</span>
+                    <span class="text-xs opacity-60 mt-1">DexScreener</span>
+                </a>
             </div>
+            
+            <p class="text-center mt-16 text-sm opacity-60">Built live with SuperGrok X • Zero technical experience required • This is the flywheel in action.</p>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-black border-t border-white/10 py-12">
-        <div class="max-w-7xl mx-auto px-6 text-center text-xs text-gray-400">
-            <p>SuperGrok • ERC20 Memecoin on Ethereum • Contract renounced • LP burned</p>
-            <p class="mt-4">Built in minutes with <span class="text-cyan-400">SuperGrok X</span> • Proving communities win</p>
-            <p class="mt-8">© 2026 Community. Not financial advice. DYOR.</p>
+    <footer class="bg-black border-t border-cyan-400/20 py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex justify-center items-center gap-3 mb-8">
+                <img src="SuperGrokPFP.jpg" alt="Logo" class="w-8 h-8 rounded-xl">
+                <span class="text-2xl font-bold neon-text">$SUPERGROK</span>
+            </div>
+            
+            <p class="text-xs opacity-40 mb-6">Not financial advice. Memecoins are volatile. DYOR. This website is 100% community-built in one afternoon using Grok.</p>
+            
+            <div class="text-[10px] opacity-30 flex justify-center gap-8 flex-wrap">
+                <a href="#">Contract • 0x00869e8e2e0343edd11314e6ccb0d78d51547ee5</a>
+                <a href="#">Uniswap V2</a>
+                <a href="#">SuperGrok X Powered</a>
+                <a href="https://x.com/grok" target="_blank">Made with ❤️ by Grok + Fractal</a>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Tailwind script initialization
+        // Tailwind script already loaded
         function initializeTailwind() {
-            tailwind.config = {
-                content: [],
-                theme: {
-                    extend: {}
+            return {
+                config(userConfig = {}) {
+                    return {
+                        content: [],
+                        theme: {
+                            extend: {}
+                        },
+                        plugins: [],
+                        ...userConfig,
+                    }
+                },
+                theme() {
+                    return this.config().theme
                 }
             }
         }
@@ -358,47 +376,37 @@
         // Mobile menu toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu')
-            const icon = document.getElementById('hamburger-icon')
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden')
-                icon.classList.replace('fa-bars', 'fa-xmark')
-            } else {
-                menu.classList.add('hidden')
-                icon.classList.replace('fa-xmark', 'fa-bars')
-            }
+            menu.classList.toggle('hidden')
         }
         
-        // Copy contract to clipboard
-        let CONTRACT_ADDRESS = "0x0000000000000000000000000000000000000000" // ← REPLACE WITH YOUR NEW CONTRACT
-        
-        function copyContract() {
-            navigator.clipboard.writeText(CONTRACT_ADDRESS).then(() => {
-                const el = document.getElementById('contract-display')
-                const original = el.innerHTML
-                el.innerHTML = 'COPIED ✓'
-                setTimeout(() => { el.innerHTML = original }, 2000)
+        // Copy contract address
+        function copyCA() {
+            const ca = "0x00869e8e2e0343edd11314e6ccb0d78d51547ee5"
+            navigator.clipboard.writeText(ca).then(() => {
+                const btn = document.getElementById('ca-text')
+                const original = btn.textContent
+                btn.textContent = 'COPIED ✓'
+                btn.classList.add('text-emerald-400')
+                setTimeout(() => {
+                    btn.textContent = original
+                    btn.classList.remove('text-emerald-400')
+                }, 2000)
             })
         }
         
-        // Update contract display on load
-        function updateContractDisplay() {
-            const display = document.getElementById('contract-display')
-            const full = document.getElementById('contract-full')
-            
-            if (CONTRACT_ADDRESS.length > 10) {
-                display.textContent = CONTRACT_ADDRESS.substring(0, 6) + '...' + CONTRACT_ADDRESS.substring(CONTRACT_ADDRESS.length - 4)
-                if (full) full.textContent = CONTRACT_ADDRESS
-            }
-        }
-        
         // Initialize everything
-        window.onload = function() {
+        document.addEventListener('DOMContentLoaded', () => {
+            // Tailwind ready
             initializeTailwind()
-            updateContractDisplay()
             
-            // Console message for fun
-            console.log('%c🚀 SuperGrok website loaded — community powered!', 'color:#00f7ff; font-family:monospace')
-        }
+            // Mobile menu button
+            const mobileBtn = document.getElementById('mobile-menu-btn')
+            if (mobileBtn) {
+                mobileBtn.addEventListener('click', toggleMobileMenu)
+            }
+            
+            console.log('%c🚀 SuperGrok website loaded. Ready for the flywheel.', 'color:#22d3ee; font-family:monospace; font-size:10px')
+        })
     </script>
 </body>
 </html>
