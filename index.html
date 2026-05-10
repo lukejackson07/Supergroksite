@@ -109,7 +109,8 @@
     <nav class="border-b border-gray-800 bg-black/80 backdrop-blur-lg fixed w-full z-50">
         <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <img src="https://raw.githubusercontent.com/FractalETH/Supergroksite/main/assets/image-download.png" 
+                <!-- Correct PNG logo path -->
+                <img src="https://raw.githubusercontent.com/FractalETH/Supergroksite/refs/heads/main/assets/Assets/image-download.png" 
                      alt="Supergrok Logo" class="h-9 w-9 rounded-full logo-glow">
                 <span class="heading-font text-2xl font-semibold tracking-tighter neon-cyan">SUPERGROK</span>
             </div>
@@ -155,7 +156,7 @@
             <h1 class="heading-font text-6xl md:text-[5.5rem] font-bold tracking-tighter leading-none mb-6 neon-cyan">
                 SUPERGROK
             </h1>
-            <p id="tagline" class="text-3xl md:text-5xl text-cyan-300 mb-8 font-medium h-16">SuperGrok SuperCycle starts now</p>
+            <p id="tagline" class="text-3xl md:text-5xl text-cyan-300 mb-8 font-medium h-16">SUPERGROK SUPERCYCLE IS HERE</p>
             <p class="max-w-2xl mx-auto text-lg md:text-xl text-gray-300 mb-12">
                 The community-owned SuperGrok memecoin on Ethereum.<br>
                 Rebuilt stronger, cleaner, and fully transparent.
@@ -232,7 +233,7 @@
         </div>
     </section>
 
-    <!-- Flywheel - 3 Enhanced Panels -->
+    <!-- Flywheel -->
     <section id="flywheel" class="py-20 md:py-28 bg-[#0B0B0E] fade-in">
         <div class="max-w-5xl mx-auto px-6">
             <div class="text-center mb-16">
@@ -241,7 +242,6 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- @SuperGrok X Account -->
                 <div class="bg-gradient-to-br from-[#1a1a1f] to-black border border-cyan-900/50 rounded-3xl p-8 card">
                     <div class="h-48 flex items-center justify-center mb-6">
                         <img src="https://raw.githubusercontent.com/FractalETH/Supergroksite/main/assets/supergrok-logo.png" 
@@ -251,7 +251,6 @@
                     <p class="text-gray-400">The official X account was acquired by xAI but has never posted. It is one of only 5 accounts followed by @xai — signaling a massive future marketing push that is yet to begin.</p>
                 </div>
 
-                <!-- Built with SuperGrok AI -->
                 <div class="bg-gradient-to-br from-[#1a1a1f] to-black border border-cyan-900/50 rounded-3xl p-8 card">
                     <div class="h-48 flex items-center justify-center mb-6">
                         <img src="https://raw.githubusercontent.com/FractalETH/Supergroksite/main/assets/Assets/grok-image-c57a0b4f-7bb2-4bcf-a1ba-7e7559d2b945.png" 
@@ -261,7 +260,6 @@
                     <p class="text-gray-400">The first memecoin ever built by its own AI. SuperGrok by SuperGrok. The memecoin promotes the AI, and the AI promotes the memecoin — creating the most powerful self-reinforcing flywheel in crypto history.</p>
                 </div>
 
-                <!-- SuperGrokVault -->
                 <div class="bg-gradient-to-br from-[#1a1a1f] to-black border border-cyan-900/50 rounded-3xl p-8 card">
                     <div class="h-48 flex items-center justify-center mb-6">
                         <img src="https://raw.githubusercontent.com/FractalETH/Supergroksite/main/assets/Assets/SuperGrokVaultPFP.png" 
@@ -275,9 +273,6 @@
             </div>
         </div>
     </section>
-
-    <!-- SuperRoadMap, Proof of SuperGrok, Tokenomics, Chart, Community, Footer remain unchanged from previous version -->
-    <!-- (All sections below are identical to maintain "all else stays the same") -->
 
     <!-- SuperRoadMap -->
     <section id="roadmap" class="py-20 md:py-28 bg-[#111113] fade-in">
@@ -384,7 +379,7 @@
     </div>
 
     <script>
-        // Mobile Menu, Scroll Progress, Dots, Typing, Magnetic Buttons, Canvas Particles, etc. (unchanged)
+        // Mobile Menu
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => {
@@ -392,6 +387,7 @@
             menuBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
         });
 
+        // Scroll Progress Bar
         const progressBar = document.getElementById('progress-bar');
         window.addEventListener('scroll', () => {
             const scrollTop = window.scrollY;
@@ -400,6 +396,7 @@
             progressBar.style.width = `${scrollPercent}%`;
         });
 
+        // Vertical Section Dots
         function scrollToSection(index) {
             const sections = ['about','story','flywheel','roadmap','token','chart','community'];
             const target = document.getElementById(sections[index]);
@@ -417,6 +414,7 @@
         }
         window.addEventListener('scroll', updateActiveDot);
 
+        // Typing Effect
         function typeWriter(element, text, speed = 65) {
             let i = 0;
             element.innerHTML = '';
@@ -431,10 +429,11 @@
         }
         window.onload = () => {
             const tagline = document.getElementById('tagline');
-            typeWriter(tagline, "SuperGrok SuperCycle starts now", 65);
+            typeWriter(tagline, "SUPERGROK SUPERCYCLE IS HERE", 65);
             updateActiveDot();
         };
 
+        // Magnetic Buttons
         function makeMagnetic(btn) {
             btn.addEventListener('mousemove', (e) => {
                 const rect = btn.getBoundingClientRect();
