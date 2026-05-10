@@ -356,4 +356,149 @@
                 </a>
                 <a href="https://dexscreener.com/ethereum/0x00869e8e2e0343edd11314e6ccb0d78d51547ee5" target="_blank" class="px-8 py-4 bg-gray-900 hover:bg-gray-800 border border-gray-700 rounded-2xl text-base font-medium transition-all">
                     DexScreener
-    
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chads Only Bar -->
+    <div class="bg-gradient-to-r from-cyan-900/30 to-purple-900/30 border-y border-cyan-900 py-6">
+        <div class="max-w-6xl mx-auto px-6 text-center text-sm md:text-base font-medium tracking-widest">
+            CHADS ONLY • COMMUNITY VAULT • NO TAXES • NO BULLSHIT • BUILT BY REAL ONES
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-900 py-10 text-center text-sm text-gray-500">
+        <p>© 2026 SuperGrok • Community Owned • Built with SuperGrok AI • DYOR • Not financial advice</p>
+    </footer>
+
+    <!-- Toast -->
+    <div id="toast" class="hidden fixed bottom-6 right-6 bg-black border border-cyan-400 text-cyan-400 px-6 py-3 rounded-2xl shadow-2xl flex items-center gap-3">
+        <span id="toast-text" class="font-medium"></span>
+    </div>
+
+    <script>
+        // Mobile Menu
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
+        });
+
+        // Scroll Progress Bar
+        const progressBar = document.getElementById('progress-bar');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            progressBar.style.width = `${scrollPercent}%`;
+        });
+
+        // Vertical Section Dots
+        function scrollToSection(index) {
+            const sections = ['about','story','flywheel','roadmap','token','chart','community'];
+            const target = document.getElementById(sections[index]);
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+        }
+        function updateActiveDot() {
+            const sections = ['about','story','flywheel','roadmap','token','chart','community'];
+            const dots = document.querySelectorAll('.dot');
+            let current = 0;
+            sections.forEach((id, i) => {
+                const rect = document.getElementById(id).getBoundingClientRect();
+                if (rect.top <= window.innerHeight / 2) current = i;
+            });
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+        }
+        window.addEventListener('scroll', updateActiveDot);
+
+        // Typing Effect
+        function typeWriter(element, text, speed = 65) {
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+        window.onload = () => {
+            const tagline = document.getElementById('tagline');
+            typeWriter(tagline, "SUPERGROK SUPERCYCLE IS HERE", 65);
+            updateActiveDot();
+        };
+
+        // Magnetic Buttons
+        function makeMagnetic(btn) {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) scale(1.05)`;
+            });
+            btn.addEventListener('mouseleave', () => btn.style.transform = 'translate(0, 0) scale(1)');
+        }
+        document.querySelectorAll('.btn-primary').forEach(makeMagnetic);
+
+        // Hero Canvas Particles
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+            update() { this.x += this.speedX; this.y += this.speedY; }
+            draw() {
+                ctx.fillStyle = '#67e8f9';
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = '#67e8f9';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 120; i++) particles.push(new Particle());
+        }
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animateParticles);
+        }
+        initParticles();
+        animateParticles();
+
+        function copyContract() {
+            navigator.clipboard.writeText("0x00869e8e2e0343edd11314e6ccb0d78d51547ee5");
+            const toast = document.getElementById('toast');
+            const text = document.getElementById('toast-text');
+            text.textContent = '✅ Contract copied!';
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 2500);
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
